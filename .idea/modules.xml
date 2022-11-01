@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/max_lab.iml" filepath="$PROJECT_DIR$/max_lab.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/max_lab_android.iml" filepath="$PROJECT_DIR$/android/max_lab_android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lab2max.iml" filepath="$PROJECT_DIR$/lab2max.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/lab2max_android.iml" filepath="$PROJECT_DIR$/android/lab2max_android.iml" />
     </modules>
   </component>
 </project>

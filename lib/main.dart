@@ -1,85 +1,62 @@
 import 'package:flutter/material.dart';
-
+import 'schedule.dart';
+import 'homepage.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MaterialApp(
+
+        home:  MyApp()
+    ),
+  );
 }
+
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login Page',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LoginPage(),
-    );
-  }
-}
-
-
-
-class LoginPage extends StatelessWidget {
-String login = '';
+  MyApp({super.key});
+  ScheduleData scheduleData = ScheduleData();
+  late List<String> groups = scheduleData.getGroupsNames();
+  late String? selectedGroup = groups[0];
+  late Schedule schedule = scheduleData.getScheduleForGroup(selectedGroup);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login Page'),
+        backgroundColor: Colors.green,
+        title: Text('Groups'),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Input your login',
-              style: TextStyle(
-                  fontSize: 35
+          children: [
+            Padding(
+              padding: EdgeInsets.fromLTRB(150.0,300,150,15),
+              child: DropdownButton<String>(
+                  value: selectedGroup,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  items: groups
+                      .map((group) =>
+                      DropdownMenuItem(
+                        value: group,
+                        child: Text(group),
+                      ))
+                      .toList(),
+                  onChanged: (String? newGroup) {
+                    selectedGroup = newGroup!;
+                  }
               ),
             ),
-            SizedBox(
-              width: 300,
-              child: TextField(
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                  ),
-                onChanged: (text){login = text;},
-              ),
-            ),
-            ElevatedButton(onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Homepage(login: login)));
-            },
-                child: Text('Log in'))
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          Home(selectedGroup: selectedGroup)));
+                },
+                child: Text('Продовжити')),
+
           ],
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
 
-class Homepage extends StatelessWidget{
-  String login='';
-  Homepage({required this.login});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Homepage'),
       ),
-      body: Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text('Welcome '+ login,
-          style: TextStyle(
-            fontSize: 50
-          ),
-          )
-          ]
-      ),
-    )
     );
   }
 }

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.max_lab">
+    package="com.example.lab2max">
    <application
-        android:label="max_lab"
+        android:label="lab2max"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
